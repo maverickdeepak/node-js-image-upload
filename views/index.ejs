@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <title>All Images</title>
+</head>
+
+<body>
+
+    <h1 class="text-center my-3">All Images</h1>
+
+    <div class="container w-75">
+        <a href="/upload" class="btn btn-warning">Upload Images</a>
+        <div class="row">
+            <% if(images.length < 1) { %>
+                <h2 class="text-center my-2">No Images found!</h2>
+                <% } %>
+                    <% images.forEach((image)=> { %>
+                        <div class="col-4">
+                            <img src="<%= image.imageUrl%>" style="border: 3px solid grey;" class="mx-4 my-3 p-1"
+                                height="250" width="250">
+                            <form style="display: inline;" action="/delete/<%= image._id %>" method="POST">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button style="cursor: pointer;" type="submit"
+                                    class="btn btn-danger float-none mx-4 px-5">Delete</button>
+                            </form>
+
+                        </div>
+                        <% }) %>
+        </div>
+    </div>
+
+</body>
+
+</html>
